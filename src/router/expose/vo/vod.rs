@@ -6,7 +6,7 @@ use uuid::Uuid;
 #[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct JsQuery {
-    pub types: Option<Vec<String>>,
+    pub types: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

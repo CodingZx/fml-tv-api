@@ -37,7 +37,7 @@ impl<'d> VodService<'d> {
             return Err(BusinessError("JS接口未启用"))
         }
 
-        let param_types = param.types.unwrap_or_default();
+        let param_types = param.types.unwrap_or_default().split(",").map(|v| v.to_string()).collect::<Vec<_>>();
         let show_groups = if param_types.is_empty() {
             // 默认显示全部
             TvGroupDao::new(&self.state.db).find_all().await?
@@ -55,6 +55,7 @@ impl<'d> VodService<'d> {
         let main_tab_ph = "$$$MAIN_TAB$$$";
         let mut main_tabs = String::new();
         main_tabs.push_str("    var res = new ArrayList();");
+        main_tabs.push_str("\n");
         for show_group in show_groups {
             let title = show_group.name;
             if show_group.types.0.len() > 1 {
