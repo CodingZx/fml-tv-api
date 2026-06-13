@@ -1,6 +1,5 @@
 server:
   port: 18099
-  json-body-mb: 5
 
 database:
   host: 127.0.0.1

@@ -22,12 +22,6 @@ pub fn read_conf(yml_file: String) -> ServerConf {
             conf.server.port = server_port;
         }
     }
-    // JSON限制
-    if let Ok(json_limit) = env::var(consts::env_keys::SERVER_JSON_LIMIT_MB) {
-        if let Ok(json_limit) = json_limit.parse::<usize>() {
-            conf.server.json_body_mb = json_limit;
-        }
-    }
 
     // 数据库 host
     if let Ok(db_host) = env::var(consts::env_keys::DB_HOST) {
@@ -154,15 +148,12 @@ impl Default for ServerConf {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ActixConf {
     pub port: u16,
-    #[serde(rename(deserialize = "json-body-mb"))]
-    pub json_body_mb: usize,
 }
 
 impl Default for ActixConf {
     fn default() -> Self {
         Self {
             port: 18099,
-            json_body_mb: 5,
         }
     }
 }
@@ -171,7 +162,7 @@ impl ActixConf {
 
     pub fn json_config(&self) -> web::JsonConfig {
         web::JsonConfig::default()
-            .limit(self.json_body_mb * 1024 * 1024)
+            .limit(5 * 1024 * 1024)
             .content_type(|m| m == "application/json")
             .error_handler(|err, req| {
                 logger::warn!("JSONError: {} {}", req.path(), err);
@@ -328,7 +319,7 @@ pub struct PgqConf {
 impl Default for PgqConf {
     fn default() -> Self {
         PgqConf {
-            enable: false,
+            enable: true,
             fetch_interval_ms: 5000,
             delay_fetch_interval_ms: 5000,
             auto_clean: true,

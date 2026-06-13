@@ -33,8 +33,6 @@ pub mod conf_keys {
 pub mod env_keys {
     /// 服务端口
     pub const SERVER_PORT: &str = "SERVER_PORT";
-    /// JSON大小限制 MB
-    pub const SERVER_JSON_LIMIT_MB: &str = "SERVER_JSON_LIMIT_MB";
 
     /// 数据库 Host
     pub const DB_HOST: &str = "DB_HOST";
