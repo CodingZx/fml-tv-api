@@ -1,0 +1,25 @@
+server:
+  port: 18099
+  json-body-mb: 5
+
+database:
+  host: 127.0.0.1
+  port: 5432
+  dbname: fml-tv
+  username: postgres
+  password: postgres
+  schema: public
+  pool:
+    min-conn: 1
+    max-conn: 10
+    conn-timeout-sec: 10
+    acq-timeout-sec: 10
+    idle-timeout-sec: 30
+    sqlx-logging: false
+    sqlx-logging-level: debug
+
+pgq:
+  enable: false
+  fetch-interval-ms: 30000
+  delay-fetch-interval-ms: 30000
+  auto-clean: true

@@ -1,0 +1,12 @@
+pub mod collect_site;
+pub mod collect_type;
+pub mod collect_vod;
+pub mod login;
+pub mod sys_account;
+pub mod sys_config;
+pub mod sys_login_log;
+pub mod sys_oper_log;
+pub mod sys_queue_msg;
+pub mod tv_group;
+pub mod tv_type;
+pub mod tv_vod;

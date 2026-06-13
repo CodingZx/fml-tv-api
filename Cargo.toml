@@ -1,0 +1,57 @@
+[package]
+name = "fml-tv-api"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+# Config
+config = { version = "0.15", features = ["yaml"] }
+
+# Logger
+tracing = { version = "0.1" , features = ["async-await", "log"]}
+tracing-subscriber = { version = "0.3", features = ["env-filter", "chrono"] }
+
+# Scheduler
+tokio-cron-scheduler = "*"
+
+# Web
+actix-web = "4"
+actix-http = "3"
+actix-cors = "0.7"
+async-trait = "0.1"
+tokio = { version = "1", features = ["full"] }
+
+# 序列化
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# JWT
+jsonwebtoken = "9"
+
+# ORM
+sea-orm = { version = "2.0.0-rc", features = [
+    "sqlx-postgres",
+    "macros",
+    "with-uuid",
+    "with-chrono",
+    "with-json",
+    "debug-print",
+    "runtime-tokio-rustls",
+] }
+
+# UUID
+uuid = { version = "1", features = ["v4", "v7", "serde"] }
+# Time
+chrono = "*"
+chrono-tz = "*"
+
+# Http
+reqwest = { version = "0.13", features = ["json", "rustls"] }
+
+# util
+rsa = "0.9"
+base64 = "0.22"
+smcrypto = "0.3"
+rand = "0.9"
+crc = "3"
+get_if_addrs = "0.5"
